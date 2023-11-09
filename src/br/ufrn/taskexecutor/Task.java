@@ -17,15 +17,19 @@ public class Task {
     }
 
     public double getCost() {
-        return cost;
+        return this.cost;
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public short getValue() {
-        return value;
+        return this.value;
+    }
+
+    public boolean getType(){
+        return this.type; 
     }
 
     public void setCost(double cost) {
@@ -38,5 +42,9 @@ public class Task {
 
     public void setType(boolean type) {
         this.type = type;
+    }
+
+    public void setValue(short value){
+        this.value = value;
     }
 }

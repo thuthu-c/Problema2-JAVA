@@ -7,7 +7,7 @@ public class Result{
     int result;
     Duration time;
 
-    Result(int id, int result, Duration time){
+    public Result(int id, int result, Duration time){
         this.id = id; 
         this.result = result;  
         this.time = time;
