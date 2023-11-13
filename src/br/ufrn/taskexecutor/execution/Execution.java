@@ -11,8 +11,10 @@ public abstract class Execution {
     Task task; 
     Result result;
     Executor executor;
+    long begin;
 
     public Execution(Task t, Executor e){
+        this.begin = System.currentTimeMillis();
         this.task = t;
         this.executor = e; 
     }
@@ -33,8 +35,8 @@ public abstract class Execution {
     }
 
 
-    public void fill (){
-        result = new Result(task.getId(), 0, Duration.ofMillis(System.currentTimeMillis()));
+    public void fill (int value){
+        result = new Result(task.getId(), value, Duration.ofMillis(System.currentTimeMillis() - begin));
     }
 
     

@@ -12,11 +12,9 @@ public class ReadExecution extends Execution{
 
     @Override
     public Result executeTask(Task task) {
-        Result result = null;
         while(executor.getWriting()); 
         hold();
-        read();
-        fill();
+        fill(read());
         return result;
     }
     

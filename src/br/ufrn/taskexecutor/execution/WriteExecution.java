@@ -26,12 +26,11 @@ public class WriteExecution extends Execution{
     public Result executeTask(Task task) {
         executor.set_writing(true);
         executor.lock();
-        
-        Result result = null;
 
         hold();
-        write(sum());
-        fill();
+        int value = sum();
+        write(value);
+        fill(value);
         executor.unlock();
         executor.set_writing(false);
         return result;
