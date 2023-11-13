@@ -3,16 +3,23 @@ package br.ufrn.taskexecutor;
 import java.util.Queue;
 
 import br.ufrn.taskexecutor.execution.Execution;
+import br.ufrn.taskexecutor.Executor;
 import br.ufrn.taskexecutor.execution.ReadExecution;
 import br.ufrn.taskexecutor.execution.WriteExecution;
 
 public class Worker extends Thread{
     private Queue<Task> tasks;
     private Queue<Result> results;
+    private Executor executor;
+
 
     public Worker(Queue<Task> tasks, Queue<Result> results) {
         this.tasks = tasks;
         this.results = results;
+    }
+
+    public void addTask(Task task){
+        tasks.add(task);
     }
 
     @Override
@@ -27,10 +34,10 @@ public class Worker extends Thread{
             Execution execution;
             if (task.getType()) {
                 // Tarefa de leitura
-                execution = new ReadExecution();
+                execution = new ReadExecution(task, executor);
             } else {
-                // Tarefa de escrita
-                execution = new WriteExecution();
+                
+                execution = new WriteExecution(task, executor);
             }
 
             // Executa a tarefa e adiciona o resultado à fila de resultados
