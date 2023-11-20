@@ -14,7 +14,7 @@ public class FileHandler {
         try (FileWriter writer = new FileWriter(file)) {
             file.createNewFile();
             writer.write("0");
-            System.out.print("Arquivo criado com sucesso!");
+            // System.out.print("Arquivo criado com sucesso!");
         } catch (IOException e) {
             e.printStackTrace();	
         }
@@ -28,6 +28,25 @@ public class FileHandler {
             e.printStackTrace();
         }
         throw new RuntimeException("Could not get file value!");
+    }
+
+    public static Integer getFileValueWithWait() {
+        File file = new File(FileHandler.sharedFilePath);
+        while (true) {
+            try (Scanner scanner = new Scanner(file)) {
+                if (scanner.hasNext()) {
+                    String nextToken = scanner.next();
+                    if (nextToken.matches("\\d+")) {
+                        return Integer.parseInt(nextToken);
+                    } else {
+                        // Handle the case where the file contains non-numeric content
+                        throw new RuntimeException("Invalid content in the file!");
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static void writeToFile(Integer value) {

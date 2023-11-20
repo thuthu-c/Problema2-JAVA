@@ -12,9 +12,15 @@ public class ReadExecution extends Execution{
 
     @Override
     public Result executeTask(Task task) {
-        while(executor.getWriting()); 
+        // System.out.println("Estou executando");
+        while(executor.getWriting()){
+            // System.out.println("estou no loop?");
+        }; 
+        // System.out.println("sai do while");
         hold();
+        // System.out.println("segurei");
         fill(read());
+        // System.out.println("acabei de ler");
         return result;
     }
     

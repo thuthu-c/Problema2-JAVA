@@ -5,7 +5,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Executor {
@@ -26,7 +25,7 @@ public class Executor {
         return tasks.isEmpty();
     }
 
-    public void set_writing(boolean isWriting){
+    public void setWriting(boolean isWriting){
         this.isWriting = isWriting;
     }
 
@@ -42,9 +41,9 @@ public class Executor {
         for(int i = 0; i < numberOfWorkers; ++i){
             Worker w = new Worker(new ConcurrentLinkedQueue<Task>(), this, cdl);
             w.start();
+            // System.out.println("Started worker " + i);
             workers.add(w);
         }
-        
     }
 
     public void dispatch(){
@@ -56,6 +55,7 @@ public class Executor {
             }
         }
     }
+
     public boolean getWriting() {
         return isWriting;
     }

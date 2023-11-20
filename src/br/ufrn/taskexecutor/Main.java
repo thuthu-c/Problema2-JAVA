@@ -5,9 +5,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
+
 import java.util.Queue;
-import java.util.Random;
 public class Main{
     
     public static void main(String[] args) {
@@ -31,12 +30,12 @@ public class Main{
             double cost = Math.random()/100.0;
             short value = (short)(Math.random()*10);
             allTasks.add(new Task(i, cost, false, value));
-        }
+        } 
 
-        for(int i = 0; i < Math.pow(10, N)*(1-(double)E/100.0); ++i){
+        for(double i = ((double)E/100.0)*Math.pow(10, N); i < Math.pow(10, N) ; ++i){
             double cost = Math.random()/100.0;
             short value = (short)(Math.random()*10);
-            allTasks.add(new Task(i, cost, true, value));
+            allTasks.add(new Task((int)i, cost, true, value));
         }
 
         Collections.shuffle(allTasks);

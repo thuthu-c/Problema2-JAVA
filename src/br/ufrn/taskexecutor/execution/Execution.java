@@ -14,11 +14,11 @@ public abstract class Execution {
     long begin;
 
     public Execution(Task t, Executor e){
+        // System.out.println("Gonna execute task " + t.getId());
         this.begin = System.currentTimeMillis();
         this.task = t;
         this.executor = e; 
     }
-
 
     public void hold(){
         try {
@@ -31,7 +31,7 @@ public abstract class Execution {
 
 
     public Integer read (){
-       return FileHandler.getFileValue();
+       return FileHandler.getFileValueWithWait();
     }
 
 

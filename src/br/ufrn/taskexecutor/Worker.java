@@ -29,11 +29,14 @@ public class Worker extends Thread{
 
     @Override
     public void run() {
+        
         while (true) {
             Task task = tasks.poll();
             if(task == null){
-
+                // System.out.println("task == null");
                 if (executor.finished()) {
+                    // System.out.println("executor.finished()");
+                    // System.out.println("Latch down by one!");
                     cdl.countDown();
                     break;
                 }
@@ -51,6 +54,7 @@ public class Worker extends Thread{
             // Executa a tarefa e adiciona o resultado à fila de resultados
             Result result = execution.executeTask(task);
             results.add(result);
+            // System.out.println("Tarefa feita!");
         }
     }
 }

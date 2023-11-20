@@ -24,15 +24,18 @@ public class WriteExecution extends Execution{
 
     @Override
     public Result executeTask(Task task) {
-        executor.set_writing(true);
+        // System.out.println("Executing a writing test!");
+        executor.setWriting(true);
         executor.lock();
-
+        // System.out.println("Writing test locked");
         hold();
         int value = sum();
         write(value);
         fill(value);
+        // System.out.println("Writing test will unlock");
         executor.unlock();
-        executor.set_writing(false);
+        executor.setWriting(false);
+        // System.out.println("Executed a writing test!");
         return result;
     }
 }
